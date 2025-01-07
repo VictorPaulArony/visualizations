@@ -1,0 +1,216 @@
+:root {
+    --primary: #1DB954;
+    --background: #191414;
+    --surface: #242424;
+    --text: #FFFFFF;
+    --gray: #B3B3B3;
+}
+
+[data-theme="light"] {
+    --primary: #028d33;
+    --background: #FFFFFF;
+    --surface: #EFEFEF;
+    --text: #000000;
+    --gray: #4b4a4a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    transition: all 0.3s ease;
+}
+
+.navbar {
+    background-color: var(--surface);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    color: var(--primary);
+    font-size: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.3s;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.theme-toggle {
+    background: var(--primary);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle:hover {
+    opacity: 0.9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: var(--surface);
+    padding: 0.5rem;
+    border-radius: 20px;
+    margin-left: 1rem;
+}
+
+.search-container input {
+    background-color: transparent;
+    color: var(--text);
+    border: 1px solid var(--primary);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    width: 200px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.search-container input:focus {
+    border-color: var(--primary);
+}
+
+.search-container ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    background-color: var(--surface);
+    color: var(--text);
+    margin-top: 0.5rem;
+    border-radius: 8px;
+    padding: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    display: none;
+}
+
+.search-container ul li {
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-container ul li:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+.search-container input:focus + ul {
+    display: block;
+}
+
+
+.main-content {
+    margin-top: 80px;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.artist-preview {
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    color: var(--text);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.artist-preview:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.artist-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: var(--primary);
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.artist-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.artist-name {
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.artist-genre {
+    color: var(--gray);
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.upcoming-count {
+    background: var(--primary);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+}
