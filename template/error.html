@@ -7,12 +7,12 @@
    <link rel="stylesheet" href="/static/error.css">
 </head>
 <body>
-    <div class="heading"><h1>ARTISTS</h1>
-        <div class="mode">
-            <button onclick="toggleMode()">Change Mode</button>
+    <nav class="navbar">
+        <a href="/" class="logo">Artists-tracker</a>
+        <div class="nav-links">
+            <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
         </div>
-      
-    </div>
+    </nav>
     <div class="content">
         <div class="card-grid">
     <h1>Error {{.Code}}</h1>
