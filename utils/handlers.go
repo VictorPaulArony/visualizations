@@ -14,20 +14,35 @@ func ArtistPageHandler(w http.ResponseWriter, r *http.Request) {
 		ErrorHandler(w, http.StatusNotFound)
 		return
 	}
-	
+
+	relations, err := GetRelations()
+	if err != nil {
+		ErrorHandler(w, http.StatusInternalServerError)
+		return
+	}
 	artists, err := GetArtists()
 	if err != nil {
 		ErrorHandler(w, http.StatusInternalServerError)
 		return
 	}
-
+	searchstruct := make([]Search, len(artists))
+	for i, v := range artists {
+		searchstruct[i].ID = v.ID
+		searchstruct[i].Image = v.Image
+		searchstruct[i].Name = v.Name
+		searchstruct[i].Members = v.Members
+		searchstruct[i].CreationDate = v.CreationDate
+		searchstruct[i].FirstAlbum = v.FirstAlbum
+		searchstruct[i].Location = v.Location
+		searchstruct[i].ConcertDates = v.ConcertDates
+		searchstruct[i].Relation = relations[i].Relation
+	}
 	temp, err := template.ParseFiles("template/index.html")
 	if err != nil {
 		ErrorHandler(w, http.StatusInternalServerError)
 		return
 	}
-
-	temp.Execute(w, artists)
+	temp.Execute(w, searchstruct)
 }
 
 // function to display more details about the artist's profile
@@ -38,36 +53,30 @@ func MoreDetailsHandler(w http.ResponseWriter, r *http.Request) {
 		ErrorHandler(w, http.StatusNotFound)
 		return
 	}
-
 	location, err := GetLocations()
 	if err != nil {
 		ErrorHandler(w, http.StatusInternalServerError)
 		return
 	}
-
 	artist, err := GetArtists()
 	if err != nil {
 		ErrorHandler(w, http.StatusInternalServerError)
 		return
 	}
-
 	relations, err := GetRelations()
 	if err != nil {
 		ErrorHandler(w, http.StatusInternalServerError)
 		return
 	}
-
 	dates, err := GetDates()
 	if err != nil {
 		ErrorHandler(w, http.StatusInternalServerError)
 		return
 	}
-
 	if id > len(artist) || id > len(location) || id > len(relations) || id > len(dates) {
 		ErrorHandler(w, http.StatusNotFound)
 		return
 	}
-
 	data := struct {
 		Artist    Artist
 		Location  Location
@@ -79,13 +88,11 @@ func MoreDetailsHandler(w http.ResponseWriter, r *http.Request) {
 		Date:      dates[id-1],
 		Relations: relations[id-1],
 	}
-
 	temp, err := template.ParseFiles("template/locations.html")
 	if err != nil {
 		ErrorHandler(w, http.StatusInternalServerError)
 		return
 	}
-
 	temp.Execute(w, data)
 }
 
@@ -100,7 +107,6 @@ func ErrorHandler(w http.ResponseWriter, code int) {
 	data := Code{
 		Code: code,
 	}
-
 	temp.Execute(w, data)
 	// temp.Execute(w, map[string]int{"Code": code})
 }
