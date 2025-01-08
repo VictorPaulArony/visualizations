@@ -1,14 +1,10 @@
 <html>
-
 <head>
     <base href="/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artists-tracker Music Hub</title>
     <link rel="stylesheet" href="../static/index.css">
-    <style>
-        
-    </style>
 </head>
 
 <body>
@@ -17,30 +13,31 @@
         <div class="nav-links">
             <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
             <div class="search-container">
-                <input type="text" id="search" placeholder="Search artists, members, or locations...">
-                <ul id="suggestions"></ul> <!-- Suggestions list -->
+                <input type="text" id="search" placeholder="Search artists..." onkeyup="performSearch()">
+                <div id="suggestions" class="suggestions-box"></div>
             </div>
         </div>
-        <!-- Search Bar -->
     </nav>
 
     <main class="main-content">
-        <!-- Artist Preview Cards -->
         {{ range . }}
-        <a href="/locations/{{.ID}}" class="artist-preview">
-            <div class="artist-avatar">
-                <img src="{{.Image}}" alt="Image of {{.Name}}">
-            </div>
-            <h2 class="artist-name">{{ .Name }}</h2>
-            <p class="artist-genre"><strong>Creation Date:</strong> {{ .CreationDate }}</p>
-            <p class="artist-genre"><strong>First Album:</strong> {{ .FirstAlbum }}</p>
-            <span class="upcoming-count">Upcoming Shows</span>
-
-        </a>
+        <div class="artist-card">
+            <a href="/locations/{{.ID}}" class="artist-preview">
+                <div class="artist-avatar">
+                    <img src="{{.Image}}" alt="Image of {{.Name}}">
+                </div>
+                <h2 class="artist-name">{{ .Name }}</h2>
+                <p class="creation-date"><strong>Creation Date:</strong> {{ .CreationDate }}</p>
+                <p class="first-album"><strong>First Album:</strong> {{ .FirstAlbum }}</p>
+                <div class="members-list" style="display: none;">
+                    {{ range .Members }}
+                        <span class="member">{{ . }}</span>
+                    {{ end }}
+                </div>
+            </a>
+        </div>
         {{ end }}
     </main>
     <script src="../static/mode.js"></script>
-   
 </body>
-
 </html>
