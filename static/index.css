@@ -271,6 +271,17 @@ body {
         margin-bottom: 1rem;
     }
 
+    .theme-toggle {
+        width: 100%;
+        margin: 0.5rem 0;
+        padding: 12px;
+    }
+
+  
+    .main-content {
+        margin-top: 250px;
+    }
+
     .suggestions-box {
         position: absolute;
         top: 100%;
