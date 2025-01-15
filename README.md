@@ -1,6 +1,6 @@
-# Groupie Tracker
+# Visualizations
 
-Groupie Tracker is an application designed to help users manage and track their favorite music groups and artists. With a user-friendly interface, you can easily view your favorite bands, ensuring you never miss a concert or album release.
+Visualizationsis an application designed to help users manage and track their favorite music groups and artists. With a user-friendly interface, you can easily view your favorite bands, ensuring you never miss a concert or album release.
 
 
 ## Technologies Used
@@ -14,12 +14,12 @@ To get started with Groupie Tracker, follow these steps:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/VictorPaulArony/groupie-tracker.git
+git clone https://github.com/VictorPaulArony/visualizations.git
 ```
 Navigate into the project directory:
 
 ```bash
-cd groupie-tracker
+cd visualizations
 ```
 
 Start the application:
