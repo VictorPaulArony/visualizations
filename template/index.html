@@ -35,11 +35,16 @@
                     <span class="member">{{ . }}</span>
                     {{ end }}
                 </div>
+                <div class="locations-list" style="display: none;">
+                    {{range .Location}}
+                        <span class="location"> {{ . }}</span>
+                    {{end}}
+                </div>
             </a>
         </div>
         {{ end }}
     </main>
-    <script src="../static/mode.js"></script>
+    <script src="/static/mode.js"></script>
 </body>
 
 </html>
