@@ -20,7 +20,14 @@ func ArtistPageHandler(w http.ResponseWriter, r *http.Request) {
 		ErrorHandler(w, http.StatusInternalServerError)
 		return
 	}
-	artists, err := GetArtists()
+
+	locations, err := GetLocations()
+	if err != nil {
+		ErrorHandler(w, http.StatusInternalServerError)
+		return
+	}
+
+	artists, err :=  GetArtists()
 	if err != nil {
 		ErrorHandler(w, http.StatusInternalServerError)
 		return
@@ -33,7 +40,7 @@ func ArtistPageHandler(w http.ResponseWriter, r *http.Request) {
 		searchstruct[i].Members = v.Members
 		searchstruct[i].CreationDate = v.CreationDate
 		searchstruct[i].FirstAlbum = v.FirstAlbum
-		searchstruct[i].Location = v.Location
+		searchstruct[i].Location = locations[i].Locations
 		searchstruct[i].ConcertDates = v.ConcertDates
 		searchstruct[i].Relation = relations[i].Relation
 	}
@@ -42,6 +49,7 @@ func ArtistPageHandler(w http.ResponseWriter, r *http.Request) {
 		ErrorHandler(w, http.StatusInternalServerError)
 		return
 	}
+
 	temp.Execute(w, searchstruct)
 }
 
