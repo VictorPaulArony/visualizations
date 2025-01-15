@@ -26,7 +26,7 @@ type Search struct {
 	Members      []string            `json:"members"`
 	CreationDate int                 `json:"creationDate"`
 	FirstAlbum   string              `json:"firstAlbum"`
-	Location     string              `json:"locations"`
+	Location     []string              `json:"locations"`
 	ConcertDates string              `json:"concertDates"`
 	Relation     map[string][]string `json:"relations"`
 }
